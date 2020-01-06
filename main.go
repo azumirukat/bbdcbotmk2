@@ -150,9 +150,9 @@ func main() {
 		} else {
 			log.Println("No slots found")
 		}
-		s := fmt.Sprint(time.Duration(10) * time.Second)
+		r := rand.Intn(10)
 		time.AfterFunc(30*time.Second, ping)
-		time.Sleep(time.Duration(s) * time.Second)
+		time.Sleep(time.Duration(r) * time.Second)
 	}
 }
 
