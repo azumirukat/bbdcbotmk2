@@ -178,7 +178,9 @@ func loadEnvironmentalVariables() {
 }
 
 func fetchCookies() (*http.Cookie, *http.Cookie) {
+	log.Println("FAIL 1");
 	resp, err := http.Get(os.Getenv("BBDC_LINK"))
+	log.Println("FAIL 2");
 	errCheck(err, "Error fetching cookies")
 	aspxanon := resp.Cookies()[0]
 	resp, err = http.Get("http://www.bbdc.sg/bbdc/b-mainframe.asp")
