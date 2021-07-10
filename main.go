@@ -45,7 +45,7 @@ func main() {
 	for {
 		//fetching cookies
 		log.Println("Fetching cookies")
-		aspxanon, sessionID := fetchCookies()
+		sessionID := fetchCookies()
 
 		//logging in
 		log.Println("Logging in")
@@ -56,7 +56,7 @@ func main() {
 		req, err := http.NewRequest("POST", "http://www.bbdc.sg/bbdc/bbdc_web/header2.asp",
 			strings.NewReader(loginForm.Encode()))
 		errCheck(err, "Error creating log in request")
-		req.AddCookie(aspxanon)
+		//req.AddCookie(aspxanon)
 		req.AddCookie(sessionID)
 		req.AddCookie(&http.Cookie{Name: "language", Value: "en-US"})
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
@@ -67,7 +67,7 @@ func main() {
 		log.Println("Fetching booking page")
 		req, err = http.NewRequest("POST", "http://www.bbdc.sg/bbdc/b-3c-pLessonBooking1.asp",
 			strings.NewReader(bookingForm().Encode()))
-		req.AddCookie(aspxanon)
+		//req.AddCookie(aspxanon)
 		req.AddCookie(sessionID)
 		req.AddCookie(&http.Cookie{Name: "language", Value: "en-US"})
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
@@ -125,7 +125,7 @@ func main() {
 						log.Println("Booking slot")
 						req, err = http.NewRequest("POST", "http://www.bbdc.sg/bbdc/b-3c-pLessonBookingDetails.asp",
 							strings.NewReader(paymentForm(slotID).Encode()))
-						req.AddCookie(aspxanon)
+						//req.AddCookie(aspxanon)
 						req.AddCookie(sessionID)
 						req.AddCookie(&http.Cookie{Name: "language", Value: "en-US"})
 						req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
@@ -150,6 +150,7 @@ func main() {
 		} else {
 			log.Println("No slots found")
 		}
+		//r := rand.Intn(300) + 120
 		r := rand.Intn(10)
 		time.AfterFunc(30*time.Second, ping)
 		time.Sleep(time.Duration(r) * time.Second)
