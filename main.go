@@ -177,18 +177,11 @@ func loadEnvironmentalVariables() {
 	}
 }
 
-func fetchCookies() (*http.Cookie, *http.Cookie) {
-	log.Println("FAIL 1");
-	resp, err := http.Get(os.Getenv("BBDC_LINK"))
-	log.Println("FAIL 2");
-	errCheck(err, "Error fetching cookies")
-	aspxanon := resp.Cookies()[0]
-	log.Println("FAIL 3");
-	resp, err = http.Get("http://www.bbdc.sg/bbdc/b-mainframe.asp")
-	log.Println("FAIL 4");
+func fetchCookies() (*http.Cookie) {
+	resp, err := http.Get("http://www.bbdc.sg/bbdc/bbdc_web/newheader.asp")
 	errCheck(err, "Error fetching cookies (sessionID)")
 	sessionID := resp.Cookies()[0]
-	return aspxanon, sessionID
+	return sessionID
 }
 
 func paymentForm(slotID string) url.Values {
