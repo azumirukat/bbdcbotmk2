@@ -181,7 +181,7 @@ func fetchCookies() (*http.Cookie, *http.Cookie) {
 	resp, err := http.Get(os.Getenv("BBDC_LINK"))
 	errCheck(err, "Error fetching cookies")
 	aspxanon := resp.Cookies()[0]
-	resp, err = http.Get("http://www.bbdc.sg/bbdc/bbdc_web/newheader.asp")
+	resp, err = http.Get("http://www.bbdc.sg/bbdc/b-mainframe.asp")
 	errCheck(err, "Error fetching cookies (sessionID)")
 	sessionID := resp.Cookies()[0]
 	return aspxanon, sessionID
