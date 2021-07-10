@@ -183,7 +183,9 @@ func fetchCookies() (*http.Cookie, *http.Cookie) {
 	log.Println("FAIL 2");
 	errCheck(err, "Error fetching cookies")
 	aspxanon := resp.Cookies()[0]
+	log.Println("FAIL 3");
 	resp, err = http.Get("http://www.bbdc.sg/bbdc/b-mainframe.asp")
+	log.Println("FAIL 4");
 	errCheck(err, "Error fetching cookies (sessionID)")
 	sessionID := resp.Cookies()[0]
 	return aspxanon, sessionID
